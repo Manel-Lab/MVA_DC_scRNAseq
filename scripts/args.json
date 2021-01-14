@@ -1,0 +1,95 @@
+{
+    "pipeline":
+    {
+      "output_dir" : "/project/results",
+      "mcherry_dir" : "/project/data",
+      "samples" : ["MVA-rep1", "MVA-rep2", "Uninfected-rep1", "Uninfected-rep2"],
+      "mva_map" : "data/MVA_gene_map",
+      "class_tsv" : "data/class-sv.tsv",
+      "R_json" : "args_paper.json"
+    },
+
+    "integration":
+    {
+        "batch":"cell_id_sil",
+        "k":[20],
+        "d":[20],
+        "ndist":[3],
+        "cc":[5, 10, 15, 20],
+        "red":["mnn"],
+        "method":"vst",
+        "nvf":2000,
+        "regressvars":"NULL",
+        "analysis":["infected"],
+        "intersect":"TRUE"
+    },
+
+    "eval":
+    {
+        "red":"mnn1_",
+        "list_genes":["B13R", "F1L", "N1L", "E3L", "PMAIP1"],
+        "res":[0.01, 0.05, 0.1, 0.2, 0.5, 1],
+        "d":20,
+        "is_norm":"TRUE",
+        "is_log":"TRUE",
+        "threshold":1,
+        "clustering":"TRUE",
+        "geneplot":"TRUE"
+    },
+
+    "clust":
+    {
+        "clustcomp":"FALSE",
+        "k":[10],
+        "red":"mnn1_",
+        "res":[0.01, 0.025, 0.05, 0.06, 0.075, 0.1, 0.15, 0.2, 0.3, 0.4, 0.5],
+        "d":[10],
+        "alg":[1],
+        "prune":[0.07],
+        "rand":[0],
+        "start":[10],
+        "iter":[10],
+        "n":10,
+        "size":500,
+        "template":"~/simple.tmpl"
+    },
+
+    "figures":
+    {
+      "red":"umap1_",
+      "d":20,
+      "list_genes":["IFNL1", "CD86", "SIGLEC1", "IFNB1", "CXCL10", "mcherry"],
+      "threshold":1,
+      "seurat_cluster":"sol1019",
+      "scaled":"TRUE",
+      "top":50,
+      "list_HM":["mcherry", "vUMI", "cUMI", "vUMI/tUMI", "MT-CYB", "MT-ND1",
+                  "MT-ATP6", "MT-CO1", "PMAIP1", "IFNL1", "IFNB1", "TNF",
+                  "CXCL10", "ISG15", "CD86", "SIGLEC1", "B13R", "F1L", "N1L", "E3L"],
+      "list_vln":["B13R", "F1L", "N1L", "E3L", "MT-CYB", "MT-ND1",
+                  "MT-ATP6", "MT-CO1", "PMAIP1", "IFNL1", "IFNB1", "TNF", "mcherry_n",
+                  "CXCL10", "ISG15", "CD86", "SIGLEC1", "ratioMVA", "nUMI_cellular", "nUMI_MVA"],
+      "DE_files":["0_diff_genes.tsv", "1_diff_genes.tsv", "2_diff_genes.tsv"],
+      "list_corr":["mcherry", "IFNB1", "IFNL1", "TNF", "CD86", "CXCL10", "SIGLEC1"]
+    },
+
+    "clustplots":
+    {
+      "seurat_cluster":"sol1019",
+      "features":["B13R", "F1L", "N1L", "E3L", "MT-CYB", "MT-ND1",
+                  "MT-ATP6", "MT-CO1", "PMAIP1", "IFNL1", "IFNB1", "TNF", "mcherry_n",
+                  "CXCL10", "ISG15", "CD86", "SIGLEC1", "ratioMVA", "nUMI_cellular", "nUMI_MVA"]
+    },
+
+    "diffexp":
+    {
+      "logFC":0.5,
+      "pvalue":0.05,
+      "min.pct":0.3,
+      "test":"MAST",
+      "cluster_sol":"sol1019",
+      "scaled":"TRUE",
+      "uninf":"FALSE"
+    }
+
+}
