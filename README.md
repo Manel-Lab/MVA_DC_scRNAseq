@@ -18,9 +18,9 @@ The four steps are executed separately thanks to a main bash script for each of 
 
 ## Singularity usage
 
-A Singularity container is provided, with every tool pre-installed to run the pipeline, and it is recommended for reproducibility. You can get the container from Sylab :
+A Singularity recipe is provided in the ``conf`` directory, and it is recommended to build a singularity container from it for reproducibility. You will need superuser rights to do so. You can do that using the command :
 
-``singularity pull library://kdeazevedo/default/mva_dc_scrnaseq``
+``singularity build Your_container_name conf/Singularity_file.txt``
 
 The Singularity version used was 3.5.3. If you wish, you can also build the Singularity container yourself with the Singularity file provided, in ``conf/Singularity_file.txt`` (superuser rights necessary) :
 
